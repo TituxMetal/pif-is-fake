@@ -24,7 +24,12 @@ export const VestSelector = ({ value, onChange }: VestSelectorProps) => {
   }
 
   return (
-    <select value={value} onChange={handleChange} className='border px-2 py-1'>
+    <select
+      value={value}
+      onChange={handleChange}
+      aria-label='Choix du gilet'
+      className='border px-2 py-1'
+    >
       {OPTIONS.map((opt) => (
         <option key={opt.value} value={opt.value}>
           {opt.label}
