@@ -18,10 +18,23 @@ describe('composeRoll', () => {
     expect(roll.motifIndex).toBeLessThan(motifs.length)
   })
 
-  it('respects a forced sigle', () => {
+  it('respects a forced (valid) sigle', () => {
     const roll = composeRoll({ prenom: 'Test', sigle: 'XYZ' })
 
     expect(roll.sigle).toBe('XYZ')
+  })
+
+  it('uppercases a forced sigle given in lowercase', () => {
+    const roll = composeRoll({ prenom: 'Test', sigle: 'xyz' })
+
+    expect(roll.sigle).toBe('XYZ')
+  })
+
+  it('falls back to a generated sigle when the forced sigle is invalid', () => {
+    const roll = composeRoll({ prenom: 'Test', sigle: 'AAA' })
+
+    expect(roll.sigle).not.toBe('AAA')
+    expect(roll.sigle).toMatch(/^[A-Z]{3}$/)
   })
 
   it('respects a forced vest', () => {
