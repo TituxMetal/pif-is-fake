@@ -1,6 +1,6 @@
 import { genericNames } from '~/lib/banks'
 
-const DISALLOWED_CHARS = /[^A-Za-zÀ-ÿ\-']/g
+const DISALLOWED_CHARS = /[^A-Za-zÀ-ÖØ-öø-ÿ\-']/g
 const MAX_PRENOM_LENGTH = 24
 
 const pickRandomGenericName = (): string => {

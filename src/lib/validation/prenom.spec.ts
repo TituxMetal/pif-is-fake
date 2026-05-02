@@ -23,6 +23,11 @@ describe('sanitizePrenom', () => {
     expect(sanitizePrenom('Jean@Doe')).toBe('JeanDoe')
   })
 
+  it('strips Unicode math symbols inside the À-ÿ range (×, ÷)', () => {
+    expect(sanitizePrenom('Jean×Marc')).toBe('JeanMarc')
+    expect(sanitizePrenom('Anne÷')).toBe('Anne')
+  })
+
   it('trims surrounding whitespace', () => {
     expect(sanitizePrenom('  Jean  ')).toBe('Jean')
   })
