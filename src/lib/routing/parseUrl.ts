@@ -15,11 +15,20 @@ const safeDecodeURIComponent = (input: string): string | null => {
 
 export const parseUrl = (url: URL): RouteIntent => {
   const segments = url.pathname.split('/').filter((segment) => segment !== '')
+
+  if (segments.length === 0) return { kind: 'home' }
+  if (segments.length > 2) return { kind: 'home' }
+
   const first = segments[0]
   const second = segments[1]
 
   if (first === undefined) return { kind: 'home' }
-  if (first === DISCLAIMER_PATH) return { kind: 'disclaimer' }
+
+  if (first === DISCLAIMER_PATH) {
+    if (second !== undefined) return { kind: 'home' }
+
+    return { kind: 'disclaimer' }
+  }
 
   const decodedFirst = safeDecodeURIComponent(first)
   const prenom = decodedFirst === null ? null : validatePrenom(decodedFirst)
