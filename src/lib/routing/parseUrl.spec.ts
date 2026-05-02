@@ -20,6 +20,19 @@ describe('parseUrl', () => {
     expect(parseUrl(url('/avertissement'))).toEqual({ kind: 'disclaimer' })
   })
 
+  it('returns disclaimer on /avertissement/ with trailing slash', () => {
+    expect(parseUrl(url('/avertissement/'))).toEqual({ kind: 'disclaimer' })
+  })
+
+  it('falls back to home on /avertissement/<extra>', () => {
+    expect(parseUrl(url('/avertissement/extra'))).toEqual({ kind: 'home' })
+  })
+
+  it('falls back to home on paths deeper than two segments', () => {
+    expect(parseUrl(url('/Jean/ABC/extra'))).toEqual({ kind: 'home' })
+    expect(parseUrl(url('/Jean/ABC/extra/more'))).toEqual({ kind: 'home' })
+  })
+
   it('returns forced-prenom for a single valid segment', () => {
     expect(parseUrl(url('/Jean'))).toEqual({ kind: 'forced-prenom', prenom: 'Jean' })
   })
