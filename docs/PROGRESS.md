@@ -6,7 +6,7 @@
 ## Slices
 
 - [x] **Slice 1 — Generation engine + minimal home** — [#1](https://github.com/TituxMetal/pif-is-fake/issues/1) · `feature/generation-engine`
-- [ ] **Slice 2 — Salarié routes + permalink + mouline** — [#2](https://github.com/TituxMetal/pif-is-fake/issues/2) · `feature/salarie-routing`
+- [x] **Slice 2 — Salarié routes + permalink + mouline** — [#2](https://github.com/TituxMetal/pif-is-fake/issues/2) · `feature/salarie-routing`
 - [ ] **Slice 3 — Visual themes + footer + responsive** — [#3](https://github.com/TituxMetal/pif-is-fake/issues/3) · `feature/visual-themes`
 - [ ] **Slice 4 — Sharing + dispatch + prod server + deploy** — [#4](https://github.com/TituxMetal/pif-is-fake/issues/4) · `feature/ship-prod`
 
