@@ -30,6 +30,11 @@ describe('decodeRollHash', () => {
     // packed = vestCode 3 << 7 = 384, all other fields 0 → base62 '00006C'
     expect(decodeRollHash('00006C')).toBeNull()
   })
+
+  it('returns null when the decoded packed value exceeds 35 bits', () => {
+    // 'zzzzzz' = 62 ** 6 - 1 ≈ 5.7e10, well above 2 ** 35 ≈ 3.4e10
+    expect(decodeRollHash('zzzzzz')).toBeNull()
+  })
 })
 
 describe('encode / decode round-trip', () => {
