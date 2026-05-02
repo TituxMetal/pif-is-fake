@@ -3,6 +3,7 @@ import { decomposePrime, generateBasePrime, generateBonus } from '~/lib/generati
 import { pickIndex } from '~/lib/generation/pickers'
 import { generateSigle } from '~/lib/generation/sigle'
 import { generateVest } from '~/lib/generation/vest'
+import { validateSigle } from '~/lib/validation'
 import type { Vest } from '~/types/bank.types'
 import type { Roll } from '~/types/roll.types'
 
@@ -13,7 +14,7 @@ export interface ComposeRollInput {
 }
 
 export const composeRoll = ({ prenom, sigle, vest }: ComposeRollInput): Roll => {
-  const finalSigle = sigle ?? generateSigle()
+  const finalSigle = validateSigle(sigle) ?? generateSigle()
   const finalVest = vest ?? generateVest()
   const base = generateBasePrime()
   const decomposition = decomposePrime(base)
