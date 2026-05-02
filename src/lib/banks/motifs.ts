@@ -10,7 +10,7 @@ export const motifs: string[] = [
   `Parce que t'étais là à 5h57.`,
   `Pour avoir bien laissé les 3 dernières palettes sur le quai.`,
   `T'as jeté le carton dans le plastique.`,
-  'Pour avoir empilé les palettes en éscalier.',
+  'Pour avoir empilé les palettes en escalier.',
   `Pour avoir klaxonné à l'entrée de la cellule.`,
   'Pour avoir prêté ton transpalette sans soupirer.',
   `Pour avoir chargé 64 palettes dans un camion à trois quarts rempli.`,
