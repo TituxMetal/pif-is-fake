@@ -3,8 +3,7 @@ import { type ChangeEvent, useState } from 'react'
 import { Loading } from '~/features/home/components/Loading'
 import { ResultDisplay } from '~/features/home/components/ResultDisplay'
 import { VestSelector } from '~/features/home/components/VestSelector'
-import { useRouteIntent } from '~/features/home/hooks/useRouteIntent'
-import type { VestSelectValue } from '~/features/home/types/home.types'
+import type { HomeProps, VestSelectValue } from '~/features/home/types/home.types'
 import { loadingSteps } from '~/lib/banks'
 import { composeRoll } from '~/lib/generation'
 import { pickN } from '~/lib/generation/pickers'
@@ -62,9 +61,7 @@ const initialLoadingFor = (intent: RouteIntent): LoadingState | null => {
   }
 }
 
-export const Home = () => {
-  const intent = useRouteIntent()
-
+export const Home = ({ intent }: HomeProps) => {
   const [prenomInput, setPrenomInput] = useState(() => initialPrenomFor(intent))
   const [vestSelect, setVestSelect] = useState<VestSelectValue>(() => initialVestFor(intent))
   const [forcedSigle, setForcedSigle] = useState<string | null>(() => initialForcedSigleFor(intent))
