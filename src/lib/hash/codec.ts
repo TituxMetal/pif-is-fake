@@ -77,6 +77,8 @@ export const decodeRollHash = (hash: string): DecodedRoll | null => {
     packed = packed * RADIX + idx
   }
 
+  if (packed >= 2 ** 35) return null
+
   const motifIndex = packed % 128
   const r1 = Math.floor(packed / 128)
   const vestCode = r1 % 4
