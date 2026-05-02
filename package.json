@@ -1,0 +1,40 @@
+{
+  "name": "pif",
+  "version": "0.0.1",
+  "description": "PrimeAuPif — satirical bonus generator",
+  "type": "module",
+  "private": true,
+  "license": "MIT",
+  "author": "Titux Metal",
+  "scripts": {
+    "dev": "vite --host",
+    "build": "vite build",
+    "preview": "vite preview",
+    "start": "bun src/server.ts",
+    "test": "bun test",
+    "typecheck": "tsgo --noEmit",
+    "lint": "biome lint --write .",
+    "lint:check": "biome lint .",
+    "format": "biome format --write .",
+    "format:check": "biome format ."
+  },
+  "dependencies": {
+    "@hono/node-server": "^2.0.1",
+    "hono": "^4.6.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^2.0.0",
+    "@tailwindcss/vite": "^4.0.0",
+    "@types/bun": "latest",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "@typescript/native-preview": "^7.0.0-dev.20260421.2",
+    "@vitejs/plugin-react": "^4.3.0",
+    "daisyui": "^5.0.0",
+    "tailwindcss": "^4.0.0",
+    "vite": "^6.0.0",
+    "vite-tsconfig-paths": "^6.1.1"
+  }
+}

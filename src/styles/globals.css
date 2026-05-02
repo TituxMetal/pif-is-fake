@@ -1,0 +1,10 @@
+@import "tailwindcss";
+@plugin "daisyui";
+
+@theme {
+  --color-pif-bg: #0e0e0f;
+  --color-pif-fg: #f5f5f4;
+  --color-pif-yellow: #facc15;
+  --color-pif-orange: #fb923c;
+  --color-pif-red: #ef4444;
+}
