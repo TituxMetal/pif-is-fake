@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback, useLayoutEffect, useState } from 'react'
 
 import type { Theme } from './theme.types'
 import { readStoredTheme, writeStoredTheme } from './themeStorage'
@@ -10,7 +10,7 @@ const applyTheme = (theme: Theme): void => {
 export const useTheme = () => {
   const [theme, setTheme] = useState<Theme>(() => readStoredTheme(window.localStorage))
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     applyTheme(theme)
   }, [theme])
 
