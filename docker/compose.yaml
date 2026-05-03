@@ -1,0 +1,14 @@
+services:
+  pif:
+    image: lgdweb/pif:prod
+    container_name: pif
+    networks:
+      - reverse-proxy-nw
+      - default-nw
+    restart: unless-stopped
+
+networks:
+  default-nw:
+    external: true
+  reverse-proxy-nw:
+    external: true

@@ -24,4 +24,21 @@ describe('server', () => {
       expect(contentType).toContain('application/json')
     })
   })
+
+  describe('robots.txt route', () => {
+    it('is registered explicitly so static serving wins over the SPA catch-all', () => {
+      const robotsRoute = app.routes.find((route) => route.path === '/robots.txt')
+
+      expect(robotsRoute).toBeDefined()
+    })
+  })
+
+  describe('GET /dispatch', () => {
+    it('falls through to the SPA catch-all (HTML response)', async () => {
+      const response = await app.request('/dispatch')
+      const contentType = response.headers.get('content-type') ?? ''
+
+      expect(contentType).toContain('text/html')
+    })
+  })
 })

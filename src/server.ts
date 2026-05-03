@@ -8,6 +8,7 @@ app.get('/api/health', (c) => c.json({ status: 'ok' }))
 
 app.use('/assets/*', serveStatic({ root: './dist' }))
 app.use('/favicon.svg', serveStatic({ root: './dist' }))
+app.use('/robots.txt', serveStatic({ root: './dist' }))
 
 app.get('*', serveStatic({ root: './dist', path: '/index.html' }))
 
