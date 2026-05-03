@@ -4,6 +4,7 @@ import { validatePrenom } from '~/lib/validation/prenom'
 import { validateSigle } from '~/lib/validation/sigle'
 
 const DISCLAIMER_PATH = 'avertissement'
+const DISPATCH_PATH = 'dispatch'
 
 const safeDecodeURIComponent = (input: string): string | null => {
   try {
@@ -28,6 +29,12 @@ export const parseUrl = (url: URL): RouteIntent => {
     if (second !== undefined) return { kind: 'home' }
 
     return { kind: 'disclaimer' }
+  }
+
+  if (first === DISPATCH_PATH) {
+    if (second !== undefined) return { kind: 'home' }
+
+    return { kind: 'dispatch' }
   }
 
   const decodedFirst = safeDecodeURIComponent(first)

@@ -20,6 +20,22 @@ describe('parseUrl', () => {
     expect(parseUrl(url('/avertissement'))).toEqual({ kind: 'disclaimer' })
   })
 
+  it('returns dispatch on /dispatch', () => {
+    expect(parseUrl(url('/dispatch'))).toEqual({ kind: 'dispatch' })
+  })
+
+  it('returns dispatch on /dispatch/ with trailing slash', () => {
+    expect(parseUrl(url('/dispatch/'))).toEqual({ kind: 'dispatch' })
+  })
+
+  it('ignores ?n= search params at the routing layer (parsed by the dispatch hook)', () => {
+    expect(parseUrl(url('/dispatch?n=K'))).toEqual({ kind: 'dispatch' })
+  })
+
+  it('falls back to home on /dispatch/<extra>', () => {
+    expect(parseUrl(url('/dispatch/extra'))).toEqual({ kind: 'home' })
+  })
+
   it('returns disclaimer on /avertissement/ with trailing slash', () => {
     expect(parseUrl(url('/avertissement/'))).toEqual({ kind: 'disclaimer' })
   })
