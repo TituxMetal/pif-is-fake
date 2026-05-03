@@ -1,4 +1,7 @@
 export { generateSigle } from './sigle'
+export { isTriggerSigle, triggerSigles } from './triggerSigles'
+export { composeDispatchView } from './dispatchRoll'
+export type { ComposeDispatchInput, DispatchCardEntry, DispatchView } from './dispatchRoll'
 export { decomposePrime, generateBasePrime, generateBonus } from './amounts'
 export { generateVest } from './vest'
 export { pickIndex, pickN } from './pickers'
