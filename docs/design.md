@@ -64,7 +64,7 @@ Three palettes share the same green-black ground; only `hi` and `hi2` shift per 
 | `fg` | `#7df9a3` | Body text — phosphor green |
 | `fgDim` | `#7df9a380` | 50%-alpha — labels, prompts |
 | `fgFaint` | `#7df9a322` | 13%-alpha — borders, separators |
-| `red` | `#ff7373` | Negative signal: `Qualité = 0€` |
+| `red` | `#ff7373` | Negative signal: loser TOTAL (`= 0`) |
 | `ok` | `#7df9a3` | `[ OK ]` confirmation tag (same as `fg`) |
 
 **Per-vest accent:**
@@ -284,7 +284,6 @@ family.
 ### Empty states
 
 - **No bonus:** `(aucun — fais profil bas)` in `fgDim` instead of the boxed bonus row.
-- **Qualité = 0:** the row's value and bar both render in `red`.
 - **End of result block:** a final `$ ▮` prompt with blinking caret reasserts the terminal frame.
 
 ---
@@ -309,7 +308,7 @@ Three palettes share the same warm dark ground; only `hi` and `hi2` shift per ve
 | `fgStrong` | `#d8cfbc` | Headlines — slightly brighter beige (still NOT white) |
 | `fgDim` | `#7a746a` | Labels, footer text |
 | `fgFaint` | `#33312d` | Borders, separators, empty-bar tracks |
-| `red` | `#e37c5b` | Negative signal: `Qualité = 0€`, loser TOTAL |
+| `red` | `#e37c5b` | Negative signal: loser TOTAL (`= 0`) |
 | `inkOnHi` | `#0e0e0f` | Text color when sitting on a `hi` background |
 
 The discipline: any text on the dark ground uses `fg`, `fgStrong`, `fgDim`, or `fgFaint` — never
@@ -557,7 +556,6 @@ the card background tints `hi @ 6%` — subtle wash, not a full slab.
 ### Empty states
 
 - **No bonus:** Bonus pill is omitted entirely.
-- **Qualité = 0:** Row value renders in `red`. Row label and bar track unaffected.
 - **Loser TOTAL (= 0):** Card-level total renders in `red` only — no other styling change.
 
 ---
