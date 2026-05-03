@@ -1,5 +1,6 @@
 import { Disclaimer } from '~/features/disclaimer'
 import { Home } from '~/features/home'
+import { AppShell } from '~/features/shell'
 import { type RouteIntent, useRouteIntent } from '~/lib/routing'
 
 const homeKey = (intent: RouteIntent): string => {
@@ -14,10 +15,26 @@ const homeKey = (intent: RouteIntent): string => {
   return 'home'
 }
 
+const pathFromIntent = (intent: RouteIntent): string => {
+  if (intent.kind === 'disclaimer') return '~/avertissement'
+  if (intent.kind === 'forced-prenom') return `~/pif/${intent.prenom}`
+  if (intent.kind === 'forced-prenom-sigle') return `~/pif/${intent.prenom}/${intent.sigle}`
+  if (intent.kind === 'replay') return `~/pif/${intent.prenom}/${intent.sigle}`
+
+  return '~/pif'
+}
+
 export const App = () => {
   const intent = useRouteIntent()
+  const path = pathFromIntent(intent)
 
-  if (intent.kind === 'disclaimer') return <Disclaimer />
-
-  return <Home key={homeKey(intent)} intent={intent} />
+  return (
+    <AppShell path={path}>
+      {intent.kind === 'disclaimer' ? (
+        <Disclaimer />
+      ) : (
+        <Home key={homeKey(intent)} intent={intent} />
+      )}
+    </AppShell>
+  )
 }
