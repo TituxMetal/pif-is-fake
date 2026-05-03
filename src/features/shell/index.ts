@@ -1,4 +1,7 @@
 export { AppShell } from './components/AppShell'
+export { Caret } from './components/Caret'
+export { CommandEcho } from './components/CommandEcho'
 export { Footer } from './components/Footer'
-export { Header } from './components/Header'
+export { ManifesteChrome } from './components/ManifesteChrome'
+export { TerminalChrome } from './components/TerminalChrome'
 export { ThemeSwitcher } from './components/ThemeSwitcher'

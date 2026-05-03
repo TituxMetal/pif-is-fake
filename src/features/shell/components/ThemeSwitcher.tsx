@@ -8,11 +8,11 @@ export const ThemeSwitcher = () => {
     <button
       type='button'
       onClick={toggleTheme}
-      className='min-h-11 cursor-pointer border border-fg-faint px-3 py-2 font-mono text-xs text-fg hover:bg-fg hover:text-bg'
+      className='inline-flex min-h-11 cursor-pointer items-center px-2 font-mono text-xs tracking-wider whitespace-nowrap text-fg-dim hover:text-hi'
       aria-label={`Activer le thème ${alternative}`}
       aria-pressed={theme === 'manifeste'}
     >
-      {alternative} ▶
+      [{alternative} ▶]
     </button>
   )
 }
