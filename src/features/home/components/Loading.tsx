@@ -32,8 +32,8 @@ export const Loading = ({ steps, durationMs, onComplete }: LoadingProps) => {
   if (currentStep === undefined) return null
 
   return (
-    <div role='status' aria-live='polite' className='text-center'>
-      <p>{currentStep}</p>
+    <div role='status' aria-live='polite' className='py-8 text-center'>
+      <p className='font-mono text-sm text-hi'>{currentStep}</p>
     </div>
   )
 }

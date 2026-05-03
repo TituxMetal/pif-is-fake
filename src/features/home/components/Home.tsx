@@ -98,8 +98,19 @@ export const Home = ({ intent }: HomeProps) => {
   }
 
   return (
-    <main className='min-h-screen flex flex-col items-center justify-center gap-6 p-6 bg-base-100 text-base-content'>
-      <h1 className='text-4xl font-bold tracking-tight'>PrimeAuPif</h1>
+    <section className='mx-auto flex w-full max-w-md flex-col gap-8 py-12'>
+      <header className='flex flex-col gap-4'>
+        <h1 className='wordmark font-display text-4xl leading-none tracking-tight uppercase md:text-5xl'>
+          <span className='wordmark-prime'>Prime</span>
+          <span className='wordmark-au'>Au</span>
+          <span className='wordmark-pif text-hi'>Pif</span>
+        </h1>
+        <p className='font-mono text-xs leading-relaxed text-fg-dim'>
+          Tirage mensuel arbitraire.
+          <br />
+          <span className='text-hi'>0 à 350 €</span>. Personne sait pourquoi.
+        </p>
+      </header>
 
       {phase === 'loading' && loading !== null && (
         <Loading
@@ -111,15 +122,20 @@ export const Home = ({ intent }: HomeProps) => {
 
       {phase !== 'loading' && (
         <>
-          <div className='flex flex-col gap-3 w-full max-w-md'>
-            <label className='flex flex-col gap-1'>
-              <span className='text-sm opacity-70'>Ton prénom (optionnel)</span>
-              <input
-                type='text'
-                value={prenomInput}
-                onChange={handlePrenomChange}
-                className='border px-2 py-1'
-              />
+          <div className='flex w-full flex-col gap-4'>
+            <label className='flex flex-col gap-2 font-mono text-xs uppercase text-fg-dim'>
+              ▸ Ton prénom (optionnel)
+              <span className='flex min-h-11 items-center gap-2 border border-fg-faint border-l-2 border-l-hi bg-panel px-3'>
+                <span aria-hidden='true' className='text-fg-dim'>
+                  $
+                </span>
+                <input
+                  type='text'
+                  value={prenomInput}
+                  onChange={handlePrenomChange}
+                  className='flex-1 bg-transparent py-2 font-mono text-sm text-fg focus:outline-none'
+                />
+              </span>
             </label>
             <VestSelector value={vestSelect} onChange={setVestSelect} />
           </div>
@@ -127,14 +143,15 @@ export const Home = ({ intent }: HomeProps) => {
           <button
             type='button'
             onClick={handleRoll}
-            className='border px-4 py-2 font-bold uppercase'
+            className='flex min-h-12 w-full cursor-pointer items-center justify-between gap-3 border-2 border-hi bg-hi px-4 py-3 font-mono text-sm font-bold tracking-wide uppercase text-bg hover:bg-bg hover:text-hi'
           >
-            {roll === null ? 'Tirer ma prime' : 'Tirer une autre prime'}
+            <span>{roll === null ? 'Tirer ma prime' : 'Tirer une autre prime'}</span>
+            <span aria-hidden='true'>▶▶</span>
           </button>
 
           {roll && <ResultDisplay roll={roll} />}
         </>
       )}
-    </main>
+    </section>
   )
 }
