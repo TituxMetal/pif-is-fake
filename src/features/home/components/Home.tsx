@@ -1,14 +1,28 @@
 import { type ChangeEvent, useState } from 'react'
 
+import { DispatchTriggerLink } from '~/features/home/components/DispatchTriggerLink'
 import { Loading } from '~/features/home/components/Loading'
+import { ManifesteCta } from '~/features/home/components/ManifesteCta'
+import { ManifesteHero } from '~/features/home/components/ManifesteHero'
+import { ManifestePitch } from '~/features/home/components/ManifestePitch'
+import { ManifestePrenomInput } from '~/features/home/components/ManifestePrenomInput'
+import { ManifesteVestSelector } from '~/features/home/components/ManifesteVestSelector'
 import { ResultDisplay } from '~/features/home/components/ResultDisplay'
-import { VestSelector } from '~/features/home/components/VestSelector'
+import { TerminalBootBlock } from '~/features/home/components/TerminalBootBlock'
+import { CommandEcho } from '~/features/shell'
+import { TerminalCta } from '~/features/home/components/TerminalCta'
+import { TerminalHero } from '~/features/home/components/TerminalHero'
+import { TerminalPitch } from '~/features/home/components/TerminalPitch'
+import { TerminalPrenomInput } from '~/features/home/components/TerminalPrenomInput'
+import { TerminalVestSelector } from '~/features/home/components/TerminalVestSelector'
 import type { HomeProps, VestSelectValue } from '~/features/home/types/home.types'
+import { ShareActions } from '~/features/sharing'
 import { loadingSteps } from '~/lib/banks'
-import { composeRoll } from '~/lib/generation'
+import { composeRoll, isTriggerSigle } from '~/lib/generation'
 import { pickN } from '~/lib/generation/pickers'
-import { buildPath } from '~/lib/routing'
+import { buildPath, emitPathChange } from '~/lib/routing'
 import type { RouteIntent } from '~/lib/routing'
+import { useTheme } from '~/lib/theme'
 import { sanitizePrenom } from '~/lib/validation'
 import type { Roll } from '~/types/roll.types'
 
@@ -62,6 +76,7 @@ const initialLoadingFor = (intent: RouteIntent): LoadingState | null => {
 }
 
 export const Home = ({ intent }: HomeProps) => {
+  const { theme } = useTheme()
   const [prenomInput, setPrenomInput] = useState(() => initialPrenomFor(intent))
   const [vestSelect, setVestSelect] = useState<VestSelectValue>(() => initialVestFor(intent))
   const [forcedSigle, setForcedSigle] = useState<string | null>(() => initialForcedSigleFor(intent))
@@ -95,61 +110,64 @@ export const Home = ({ intent }: HomeProps) => {
     setPhase('revealed')
     setLoading(null)
     window.history.replaceState(null, '', buildPath(loading.pendingRoll))
+    emitPathChange()
   }
 
+  const ctaLabel = roll === null ? 'Tirer ma prime' : 'Tirer une autre prime'
+
   return (
-    <section className='mx-auto flex w-full max-w-md flex-col gap-8 py-12'>
+    <section className='flex w-full flex-col gap-8 py-12'>
+      {theme === 'terminal' && phase === 'idle' && <TerminalBootBlock />}
+      {theme === 'manifeste' && (
+        <span className='inline-flex items-center self-start bg-hi px-3 py-1 font-mono text-xs font-bold tracking-widest text-ink-on-hi uppercase'>
+          MAI 2026
+        </span>
+      )}
       <header className='flex flex-col gap-4'>
-        <h1 className='wordmark font-display text-4xl leading-none tracking-tight uppercase md:text-5xl'>
-          <span className='wordmark-prime'>Prime</span>
-          <span className='wordmark-au'>Au</span>
-          <span className='wordmark-pif text-hi'>Pif</span>
-        </h1>
-        <p className='font-mono text-xs leading-relaxed text-fg-dim'>
-          Tirage mensuel arbitraire.
-          <br />
-          <span className='text-hi'>0 à 350 €</span>. Personne sait pourquoi.
-        </p>
+        {theme === 'terminal' ? <TerminalHero /> : <ManifesteHero />}
+        {theme === 'terminal' ? <TerminalPitch /> : <ManifestePitch />}
       </header>
 
       {phase === 'loading' && loading !== null && (
-        <Loading
-          steps={loading.steps}
-          durationMs={loading.durationMs}
-          onComplete={handleLoadingComplete}
-        />
+        <>
+          {theme === 'terminal' && (
+            <CommandEcho
+              command={`pif draw --user=${loading.pendingRoll.prenom.toUpperCase()} --site=${loading.pendingRoll.sigle}`}
+              framingLines={['Connecting to /dev/arbitrary', 'Drawing prime']}
+            />
+          )}
+          <Loading
+            steps={loading.steps}
+            durationMs={loading.durationMs}
+            onComplete={handleLoadingComplete}
+          />
+        </>
       )}
 
       {phase !== 'loading' && (
         <>
           <div className='flex w-full flex-col gap-4'>
-            <label className='flex flex-col gap-2 font-mono text-xs uppercase text-fg-dim'>
-              ▸ Ton prénom (optionnel)
-              <span className='flex min-h-11 items-center gap-2 border border-fg-faint border-l-2 border-l-hi bg-panel px-3'>
-                <span aria-hidden='true' className='text-fg-dim'>
-                  $
-                </span>
-                <input
-                  type='text'
-                  value={prenomInput}
-                  onChange={handlePrenomChange}
-                  className='flex-1 bg-transparent py-2 font-mono text-sm text-fg focus:outline-none'
-                />
-              </span>
-            </label>
-            <VestSelector value={vestSelect} onChange={setVestSelect} />
+            {theme === 'terminal' ? (
+              <TerminalPrenomInput value={prenomInput} onChange={handlePrenomChange} />
+            ) : (
+              <ManifestePrenomInput value={prenomInput} onChange={handlePrenomChange} />
+            )}
+            {theme === 'terminal' ? (
+              <TerminalVestSelector value={vestSelect} onChange={setVestSelect} />
+            ) : (
+              <ManifesteVestSelector value={vestSelect} onChange={setVestSelect} />
+            )}
           </div>
 
-          <button
-            type='button'
-            onClick={handleRoll}
-            className='flex min-h-12 w-full cursor-pointer items-center justify-between gap-3 border-2 border-hi bg-hi px-4 py-3 font-mono text-sm font-bold tracking-wide uppercase text-bg hover:bg-bg hover:text-hi'
-          >
-            <span>{roll === null ? 'Tirer ma prime' : 'Tirer une autre prime'}</span>
-            <span aria-hidden='true'>▶▶</span>
-          </button>
+          {theme === 'terminal' ? (
+            <TerminalCta label={ctaLabel} onClick={handleRoll} />
+          ) : (
+            <ManifesteCta label={ctaLabel} onClick={handleRoll} />
+          )}
 
           {roll && <ResultDisplay roll={roll} />}
+          {roll && <ShareActions roll={roll} />}
+          {roll && isTriggerSigle(roll.sigle) && <DispatchTriggerLink />}
         </>
       )}
     </section>
