@@ -43,6 +43,16 @@ describe('readStoredTheme', () => {
 
     expect(readStoredTheme(storage)).toBe(DEFAULT_THEME)
   })
+
+  it('returns the default theme when storage access throws', () => {
+    const storage = {
+      getItem: () => {
+        throw new Error('SecurityError: storage blocked')
+      }
+    }
+
+    expect(readStoredTheme(storage)).toBe(DEFAULT_THEME)
+  })
 })
 
 describe('writeStoredTheme', () => {
@@ -60,5 +70,15 @@ describe('writeStoredTheme', () => {
     writeStoredTheme(storage, 'manifeste')
 
     expect(storage.snapshot()[THEME_STORAGE_KEY]).toBe('manifeste')
+  })
+
+  it('does not throw when storage access throws', () => {
+    const storage = {
+      setItem: () => {
+        throw new Error('QuotaExceededError')
+      }
+    }
+
+    expect(() => writeStoredTheme(storage, 'manifeste')).not.toThrow()
   })
 })

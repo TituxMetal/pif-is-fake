@@ -9,13 +9,22 @@ type WritableStorage = Pick<Storage, 'setItem'>
 const isTheme = (value: unknown): value is Theme => value === 'terminal' || value === 'manifeste'
 
 export const readStoredTheme = (storage: ReadableStorage): Theme => {
-  const raw = storage.getItem(THEME_STORAGE_KEY)
+  try {
+    const raw = storage.getItem(THEME_STORAGE_KEY)
 
-  if (isTheme(raw)) return raw
+    if (isTheme(raw)) return raw
 
-  return DEFAULT_THEME
+    return DEFAULT_THEME
+  } catch {
+    return DEFAULT_THEME
+  }
 }
 
 export const writeStoredTheme = (storage: WritableStorage, theme: Theme): void => {
-  storage.setItem(THEME_STORAGE_KEY, theme)
+  try {
+    storage.setItem(THEME_STORAGE_KEY, theme)
+  } catch {
+    // Storage may be blocked (Safari private mode, Brave strict, quota exceeded).
+    // Persistence is non-critical — silently degrade.
+  }
 }
