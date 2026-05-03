@@ -1,27 +1,35 @@
 @import 'tailwindcss';
-@plugin 'daisyui';
 
 @theme {
   --font-mono: 'JetBrains Mono Variable', 'IBM Plex Mono', ui-monospace, monospace;
   --font-display: 'JetBrains Mono Variable', 'IBM Plex Mono', ui-monospace, monospace;
+  --font-body: 'Inter Variable', system-ui, sans-serif;
+
+  --animate-pif-blink: pif-blink 1s steps(2) infinite;
 
   --color-bg: #0c0e0c;
   --color-panel: #161816;
   --color-fg: #7df9a3;
+  --color-fg-strong: #7df9a3;
   --color-fg-dim: color-mix(in srgb, var(--color-fg) 50%, transparent);
   --color-fg-faint: color-mix(in srgb, var(--color-fg) 13%, transparent);
   --color-red: #ff7373;
   --color-hi: #facc15;
   --color-hi-2: #facc15;
+  --color-ink-on-hi: #0c0e0c;
 }
 
 [data-theme='manifeste'] {
   --font-display: 'Archivo Black', Impact, sans-serif;
 
   --color-bg: #0e0e0f;
-  --color-panel: #1a1a1c;
+  --color-panel: #17171a;
   --color-fg: #bdb6a8;
-  --color-red: #ef4444;
+  --color-fg-strong: #d8cfbc;
+  --color-fg-dim: #7a746a;
+  --color-fg-faint: #33312d;
+  --color-red: #e37c5b;
+  --color-ink-on-hi: #0e0e0f;
 }
 
 [data-vest='interim'] {
@@ -52,26 +60,39 @@
   }
 }
 
-.wordmark > span {
-  display: inline;
-}
-
-.wordmark > .wordmark-prime {
-  display: block;
-}
-
-[data-theme='manifeste'] .wordmark > span {
-  display: block;
-  line-height: 0.95;
-  letter-spacing: 0.01em;
-}
-
-[data-theme='manifeste'] .wordmark > .wordmark-pif {
-  font-size: 4.5rem;
-}
-
-@media (min-width: 768px) {
-  [data-theme='manifeste'] .wordmark > .wordmark-pif {
-    font-size: 8rem;
+@keyframes pif-blink {
+  to {
+    opacity: 0;
   }
+}
+
+@keyframes pif-snap-reveal {
+  to {
+    opacity: 1;
+  }
+}
+
+.pif-boot-line {
+  opacity: 0;
+  animation: pif-snap-reveal 1ms forwards;
+}
+
+.pif-boot-line:nth-child(1) {
+  animation-delay: 0ms;
+}
+
+.pif-boot-line:nth-child(2) {
+  animation-delay: 120ms;
+}
+
+.pif-boot-line:nth-child(3) {
+  animation-delay: 240ms;
+}
+
+.pif-boot-line:nth-child(4) {
+  animation-delay: 360ms;
+}
+
+.pif-boot-line:nth-child(5) {
+  animation-delay: 480ms;
 }
