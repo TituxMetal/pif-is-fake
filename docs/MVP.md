@@ -102,8 +102,9 @@ wait the full duration. The vest selector reflects the encoded vest.
 Discovered via two paths only:
 
 - **Keyboard sequence** — to be defined later. Works on any page.
-- **Rare collision** — when a salarié-side roll lands on one of the special sigles
-  `{GXO, DHL, UPS, FDX, GLS, XPO}`, a temporary link appears below the result: _"Tiens donc.
+- **Rare collision** — when a salarié-side roll lands on one of the 36 trigger sigles
+  (2 logistics anchors `{GXO, XPO}` + 34 geek references — see [Special trigger sigles](#special-trigger-sigles)
+  below), a temporary link appears below the result: _"Tiens donc.
   Dispatch des primes disponible →"_.
 
 No navigation entry, no sitemap mention, no link in the salarié view header. The route is
@@ -144,10 +145,20 @@ generation; real and fictional cards interleave. See
   - No identical triples (`AAA`, `BBB`, …)
   - No consecutive identical letters (`AAB`, `ABB`)
 - Valid pool: **16 250 combinations**
-- Special trigger sigles: `{GXO, DHL, UPS, FDX, GLS, XPO}` — when drawn, reveal the temporary
-  dispatch-view link
 - Display format everywhere: `<SIGLE> Logistics`. The suffix is display-only — never present in
   URLs.
+
+#### Special trigger sigles
+
+A curated set of **36 sigles** that reveal the temporary dispatch-view link when drawn.
+Probability ≈ 0.22 % (≈ 1 roll out of 451) — discoverable on extended play.
+
+- **Logistics (2):** `GXO`, `XPO`
+- **Geek references (34):** `GIT`, `NPM`, `URL`, `FTP`, `API`, `DNS`, `SQL`, `AWS`, `TCP`,
+  `UDP`, `VIM`, `GPL`, `MIT`, `BSD`, `ZIP`, `TAR`, `TLS`, `VPN`, `KEY`, `DEV`, `BUG`, `LOG`,
+  `TXT`, `WSL`, `LAN`, `WAN`, `SVG`, `PNG`, `JPG`, `XML`, `GPU`, `CPU`, `RAM`, `USB`
+
+Authoritative source: `src/lib/generation/triggerSigles.ts`
 
 ### Amounts
 
@@ -171,7 +182,7 @@ rare +100 / +150 € bonus.
 **Bonus line labels** (sarcastic, by value):
 
 - `+50€` → _"Bonus surproduction"_
-- `+100€` → _"Bonus négocié au bureau"_
+- `+100€` → _"Bonus négocié"_
 - `+150€` → _"Bonus — t'as bien fait de râler"_
 
 ### Decomposition (Production / Qualité / Sécurité)
@@ -494,7 +505,7 @@ Concrete user-facing strings, all in French. Final wording can be refined during
 | Dispatch re-roll              | GÉNÉRER NOUVELLE DISTRIBUTION |
 | Share — copy link             | COPIER LE LIEN                |
 | Share — native share          | PARTAGER                      |
-| Share — image download        | TÉLÉCHARGER L'IMAGE           |
+| Share — copy image            | COPIER L'IMAGE                |
 | Theme switcher (in Terminal)  | Manifeste ▶                   |
 | Theme switcher (in Manifeste) | Terminal ▶                    |
 | Vest selector — random        | Aléatoire                     |

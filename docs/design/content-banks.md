@@ -228,7 +228,7 @@ Already pinned:
 | Bonus value | Label |
 | --- | --- |
 | `+50€` | Bonus surproduction |
-| `+100€` | Bonus négocié au bureau |
+| `+100€` | Bonus négocié |
 | `+150€` | Bonus — t'as bien fait de râler |
 
 ## Trigger sigles (per `MVP.md`)
