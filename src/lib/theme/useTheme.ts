@@ -1,4 +1,4 @@
-import { useCallback, useLayoutEffect, useState } from 'react'
+import { useCallback, useSyncExternalStore } from 'react'
 
 import type { Theme } from './theme.types'
 import { readStoredTheme, writeStoredTheme } from './themeStorage'
@@ -7,21 +7,35 @@ const applyTheme = (theme: Theme): void => {
   document.documentElement.dataset.theme = theme
 }
 
-export const useTheme = () => {
-  const [theme, setTheme] = useState<Theme>(() => readStoredTheme(window.localStorage))
+let currentTheme: Theme = readStoredTheme(window.localStorage)
+applyTheme(currentTheme)
 
-  useLayoutEffect(() => {
-    applyTheme(theme)
-  }, [theme])
+const listeners = new Set<() => void>()
+
+const subscribe = (callback: () => void) => {
+  listeners.add(callback)
+
+  return () => {
+    listeners.delete(callback)
+  }
+}
+
+const getSnapshot = (): Theme => currentTheme
+
+const setTheme = (next: Theme): void => {
+  currentTheme = next
+  applyTheme(next)
+  writeStoredTheme(window.localStorage, next)
+  listeners.forEach((notify) => {
+    notify()
+  })
+}
+
+export const useTheme = () => {
+  const theme = useSyncExternalStore(subscribe, getSnapshot)
 
   const toggleTheme = useCallback(() => {
-    setTheme((current) => {
-      const next: Theme = current === 'terminal' ? 'manifeste' : 'terminal'
-
-      writeStoredTheme(window.localStorage, next)
-
-      return next
-    })
+    setTheme(currentTheme === 'terminal' ? 'manifeste' : 'terminal')
   }, [])
 
   return { theme, toggleTheme }
