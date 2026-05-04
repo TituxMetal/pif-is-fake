@@ -2,7 +2,7 @@ import { motifs } from '~/lib/banks'
 import { colleagues } from '~/lib/banks/colleagues'
 import { genericNames } from '~/lib/banks/genericNames'
 import { decomposePrime, generateBasePrime, generateBonus } from '~/lib/generation/amounts'
-import { pickIndex, pickN } from '~/lib/generation/pickers'
+import { pickN, pickNIndexes } from '~/lib/generation/pickers'
 import { generateSigle } from '~/lib/generation/sigle'
 import { generateId } from '~/lib/util/generateId'
 import type { Vest } from '~/types/bank.types'
@@ -22,11 +22,15 @@ export interface ComposeDispatchInput {
   interimCount?: number
 }
 
-const composeCard = (prenom: string, sigle: string, vest: Vest): DispatchCardEntry => {
+const composeCard = (
+  prenom: string,
+  sigle: string,
+  vest: Vest,
+  motifIndex: number
+): DispatchCardEntry => {
   const base = generateBasePrime()
   const decomposition = decomposePrime(base)
   const bonus = generateBonus()
-  const motifIndex = pickIndex(motifs.length)
 
   return { id: generateId(), prenom, sigle, decomposition, bonus, vest, motifIndex }
 }
@@ -49,13 +53,17 @@ export const composeDispatchView = ({
   interimCount = 0
 }: ComposeDispatchInput = {}): DispatchView => {
   const finalSigle = sigle ?? generateSigle()
+  const totalCards = colleagues.length + interimCount
+  const motifIndexes = pickNIndexes(motifs.length, totalCards)
 
-  const realCards = colleagues.map((colleague) =>
-    composeCard(colleague.name, finalSigle, colleague.vest)
+  const realCards = colleagues.map((colleague, position) =>
+    composeCard(colleague.name, finalSigle, colleague.vest, motifIndexes[position] as number)
   )
 
   const interimNames = interimCount === 0 ? [] : pickN(genericNames, interimCount)
-  const interimCards = interimNames.map((name) => composeCard(name, finalSigle, 'interim'))
+  const interimCards = interimNames.map((name, position) =>
+    composeCard(name, finalSigle, 'interim', motifIndexes[colleagues.length + position] as number)
+  )
 
   return {
     sigle: finalSigle,

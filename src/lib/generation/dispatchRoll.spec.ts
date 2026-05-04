@@ -37,8 +37,7 @@ describe('composeDispatchView', () => {
 
   it('marks every fictional intérim card with the interim vest', () => {
     const view = composeDispatchView({ sigle: 'GIT', interimCount: 8 })
-    const realNames = new Set(colleagues.map((colleague) => colleague.name))
-    const fictional = view.cards.filter((card) => !realNames.has(card.prenom))
+    const fictional = view.cards.filter((card) => card.vest === 'interim')
 
     expect(fictional).toHaveLength(8)
     for (const card of fictional) {
@@ -65,6 +64,15 @@ describe('composeDispatchView', () => {
     const view = composeDispatchView()
 
     expect(view.sigle).toMatch(/^[A-Z]{3}$/)
+  })
+
+  it('assigns a unique motifIndex to every card (no duplicate motifs across the dispatch)', () => {
+    for (let attempt = 0; attempt < 50; attempt++) {
+      const view = composeDispatchView({ sigle: 'GIT', interimCount: 20 })
+      const motifIndexes = view.cards.map((card) => card.motifIndex)
+
+      expect(new Set(motifIndexes).size).toBe(motifIndexes.length)
+    }
   })
 
   it('shuffles cards (two consecutive views with interim differ in order)', () => {
