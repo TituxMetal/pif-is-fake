@@ -21,3 +21,20 @@ export const pickN = <T>(bank: readonly T[], n: number): T[] => {
 
   return picked
 }
+
+export const pickNIndexes = (bankSize: number, n: number): number[] => {
+  if (n > bankSize) throw new Error('pickNIndexes: n exceeds bank size')
+
+  const picked: number[] = []
+  const seen = new Set<number>()
+
+  while (picked.length < n) {
+    const idx = pickIndex(bankSize)
+    if (seen.has(idx)) continue
+
+    seen.add(idx)
+    picked.push(idx)
+  }
+
+  return picked
+}
