@@ -1,7 +1,8 @@
 import {
   disclaimerHeading,
   disclaimerLegal,
-  disclaimerMotivation
+  disclaimerMotivation,
+  disclaimerSource
 } from '~/features/disclaimer/content/disclaimerCopy'
 
 export const ManifesteDisclaimer = () => (
@@ -20,5 +21,18 @@ export const ManifesteDisclaimer = () => (
     <hr className='border-0 border-t border-fg-faint' />
 
     <p className='font-body text-base leading-[1.55] text-fg-strong'>{disclaimerMotivation}</p>
+
+    <p className='font-body text-base leading-[1.55] text-fg-strong'>
+      {`${disclaimerSource.prefix} `}
+      <a
+        href={disclaimerSource.url}
+        target='_blank'
+        rel='noopener noreferrer'
+        className='text-hi underline underline-offset-2 hover:opacity-90'
+      >
+        {disclaimerSource.label}
+      </a>
+      .
+    </p>
   </section>
 )

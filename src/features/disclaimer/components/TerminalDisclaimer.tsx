@@ -1,7 +1,8 @@
 import {
   disclaimerHeading,
   disclaimerLegal,
-  disclaimerMotivation
+  disclaimerMotivation,
+  disclaimerSource
 } from '~/features/disclaimer/content/disclaimerCopy'
 import { Caret } from '~/features/shell'
 
@@ -29,6 +30,24 @@ export const TerminalDisclaimer = () => (
         &gt;
       </span>
       <span>{disclaimerMotivation}</span>
+    </p>
+
+    <p className='flex gap-2 text-fg'>
+      <span aria-hidden='true' className='shrink-0'>
+        {'>'}
+      </span>
+      <span>
+        {`${disclaimerSource.prefix} `}
+        <a
+          href={disclaimerSource.url}
+          target='_blank'
+          rel='noopener noreferrer'
+          className='text-hi underline underline-offset-2 hover:opacity-90'
+        >
+          {disclaimerSource.label}
+        </a>
+        .
+      </span>
     </p>
 
     <p className='flex items-baseline gap-2 pt-2 text-fg'>

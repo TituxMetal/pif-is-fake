@@ -7,3 +7,9 @@ export const disclaimerLegal: ReadonlyArray<string> = [
 ]
 
 export const disclaimerMotivation = `PIF est né d'une frustration : voir un système d'évaluation qui ne récompense pas ce qu'il prétend récompenser. Le problème n'est pas individuel — c'est la mécanique qui crée le piège. Le système peut être mauvais sans qu'aucun de ceux qui le font tourner ne le soit.`
+
+export const disclaimerSource = {
+  prefix: `Si tu veux vérifier qu'il n'y a aucun ciblage, aucune donnée stockée, aucun tour de passe-passe — le code est ouvert sur`,
+  url: 'https://github.com/TituxMetal/pif-is-fake',
+  label: 'GitHub'
+}
