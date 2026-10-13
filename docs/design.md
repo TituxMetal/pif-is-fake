@@ -75,8 +75,9 @@ Three palettes share the same green-black ground; only `hi` and `hi2` shift per 
 | `orange` — embauché | `#fb923c` | `#fb923c` |
 | `mixed` — responsable | `#facc15` | `#fb923c` |
 
-In the bicolor variant, `hi` carries headlines / TOTAL; `hi2` carries bonus lines and the motif
-border accent.
+In the bicolor variant on the salarié result card, `hi` carries the decomposition values/bars and
+the TOTAL label and amount; `hi2` carries the section title, the bonus line and border, the TOTAL
+border, and the motif border/text.
 
 ### Typography
 
@@ -228,7 +229,7 @@ family.
 │ └──────────────────────────────────────────┘ │
 │                                              │
 │ ┌──────────────────────────────────────────┐ │
-│ │ = TOTAL                          160 €   │ │  ← yellow slab
+│ │ = TOTAL                          160 €   │ │  ← hi2 border, hi text
 │ └──────────────────────────────────────────┘ │
 │                                              │
 │ ── MOTIF ──────────────────────              │
@@ -283,7 +284,7 @@ family.
 
 ### Empty states
 
-- **No bonus:** `(aucun — fais profil bas)` in `fgDim` instead of the boxed bonus row.
+- **No bonus:** `(aucun — fais profil bas)` in `hi2` instead of the boxed bonus row.
 - **End of result block:** a final `$ ▮` prompt with blinking caret reasserts the terminal frame.
 
 ---
