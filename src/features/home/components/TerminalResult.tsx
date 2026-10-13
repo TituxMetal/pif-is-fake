@@ -1,6 +1,7 @@
 import { Caret } from '~/features/shell'
 import { motifs } from '~/lib/banks'
 import { encodeRollHash } from '~/lib/hash'
+import { previousMonthLabel } from '~/lib/util/monthLabel'
 import type { Bonus, Roll } from '~/types/roll.types'
 
 interface TerminalResultProps {
@@ -42,7 +43,7 @@ export const TerminalResult = ({ roll }: TerminalResultProps) => {
         <span aria-hidden='true' className='mr-2'>
           ┃
         </span>
-        Relevé de prime — MAI 2026
+        Relevé de prime — {previousMonthLabel('uppercase')}
       </h2>
 
       <dl className='grid grid-cols-[6.5em_1fr] gap-y-1'>

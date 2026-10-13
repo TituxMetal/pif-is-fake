@@ -1,5 +1,6 @@
 import { motifs } from '~/lib/banks'
 import { encodeRollHash } from '~/lib/hash'
+import { previousMonthLabel } from '~/lib/util/monthLabel'
 import type { Bonus, Roll } from '~/types/roll.types'
 
 interface ManifesteResultProps {
@@ -80,7 +81,9 @@ export const ManifesteResult = ({ roll }: ManifesteResultProps) => {
       <div className='flex flex-col gap-2 bg-hi p-6 text-ink-on-hi'>
         <span className='font-mono text-[10px] font-bold tracking-[0.3em] uppercase'>Total</span>
         <div className='flex items-end justify-between gap-4'>
-          <span className='font-mono text-[9px] tracking-[0.1em] uppercase'>Net — Mai 2026</span>
+          <span className='font-mono text-[9px] tracking-[0.1em] uppercase'>
+            Net — {previousMonthLabel('capitalized')}
+          </span>
           <span className='font-display text-[64px] leading-none tracking-tighter tabular-nums md:text-[80px]'>
             {total}€
           </span>

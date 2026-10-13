@@ -23,6 +23,7 @@ import { pickN } from '~/lib/generation/pickers'
 import { buildPath, emitPathChange } from '~/lib/routing'
 import type { RouteIntent } from '~/lib/routing'
 import { useTheme } from '~/lib/theme'
+import { previousMonthLabel } from '~/lib/util/monthLabel'
 import { sanitizePrenom } from '~/lib/validation'
 import type { Roll } from '~/types/roll.types'
 
@@ -120,7 +121,7 @@ export const Home = ({ intent }: HomeProps) => {
       {theme === 'terminal' && phase === 'idle' && <TerminalBootBlock />}
       {theme === 'manifeste' && (
         <span className='inline-flex items-center self-start bg-hi px-3 py-1 font-mono text-xs font-bold tracking-widest text-ink-on-hi uppercase'>
-          MAI 2026
+          {previousMonthLabel('uppercase')}
         </span>
       )}
       <header className='flex flex-col gap-4'>
