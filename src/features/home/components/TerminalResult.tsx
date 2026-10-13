@@ -39,7 +39,7 @@ export const TerminalResult = ({ roll }: TerminalResultProps) => {
       data-vest={roll.vest}
       className='flex flex-col gap-4 font-mono text-[13px] leading-relaxed text-fg'
     >
-      <h2 className='text-sm font-bold tracking-wide text-hi uppercase'>
+      <h2 className='text-sm font-bold tracking-wide text-hi-2 uppercase'>
         <span aria-hidden='true' className='mr-2'>
           ┃
         </span>
@@ -60,24 +60,24 @@ export const TerminalResult = ({ roll }: TerminalResultProps) => {
         <ul className='flex flex-col gap-0 tabular-nums'>
           <li className='grid grid-cols-[6.5em_1fr_3.5em] items-baseline gap-2 whitespace-nowrap'>
             <span className='text-fg-dim'>Production</span>
-            <span aria-hidden='true' className='overflow-hidden text-fg'>
+            <span aria-hidden='true' className='overflow-hidden text-hi'>
               {buildBar(production)}
             </span>
-            <span className='text-right text-fg'>{production}€</span>
+            <span className='text-right text-hi'>{production}€</span>
           </li>
           <li className='grid grid-cols-[6.5em_1fr_3.5em] items-baseline gap-2 whitespace-nowrap'>
             <span className='text-fg-dim'>Qualité</span>
-            <span aria-hidden='true' className='overflow-hidden text-fg'>
+            <span aria-hidden='true' className='overflow-hidden text-hi'>
               {buildBar(qualite)}
             </span>
-            <span className='text-right text-fg'>{qualite}€</span>
+            <span className='text-right text-hi'>{qualite}€</span>
           </li>
           <li className='grid grid-cols-[6.5em_1fr_3.5em] items-baseline gap-2 whitespace-nowrap'>
             <span className='text-fg-dim'>Sécurité</span>
-            <span aria-hidden='true' className='overflow-hidden text-fg'>
+            <span aria-hidden='true' className='overflow-hidden text-hi'>
               {buildBar(securite)}
             </span>
-            <span className='text-right text-fg'>{securite}€</span>
+            <span className='text-right text-hi'>{securite}€</span>
           </li>
         </ul>
       </section>
@@ -85,9 +85,9 @@ export const TerminalResult = ({ roll }: TerminalResultProps) => {
       <section className='flex flex-col gap-1'>
         <p className='text-fg-dim'>── BONUS ──────────────────────</p>
         {bonus === null ? (
-          <p className='text-fg-dim italic'>(aucun — fais profil bas)</p>
+          <p className='text-hi-2 italic'>(aucun — fais profil bas)</p>
         ) : (
-          <p className='flex items-baseline justify-between border border-fg-faint px-3 py-2 tabular-nums'>
+          <p className='flex items-baseline justify-between border border-hi-2 px-3 py-2 text-hi-2 tabular-nums'>
             <span>
               <span aria-hidden='true' className='mr-2 text-hi-2'>
                 +
@@ -99,19 +99,19 @@ export const TerminalResult = ({ roll }: TerminalResultProps) => {
         )}
       </section>
 
-      <p className='flex items-baseline justify-between border border-hi bg-hi px-4 py-3 tabular-nums text-ink-on-hi'>
+      <p className='flex items-baseline justify-between border border-hi-2 px-4 py-3 tabular-nums text-hi'>
         <span className='text-xs font-bold tracking-wider uppercase'>
           <span aria-hidden='true' className='mr-2'>
             =
           </span>
           Total
         </span>
-        <span className='font-display text-3xl font-bold'>{total} €</span>
+        <span className='font-display text-3xl font-bold text-hi'>{total} €</span>
       </p>
 
       <section className='flex flex-col gap-1'>
         <p className='text-fg-dim'>── MOTIF ──────────────────────</p>
-        <p className='flex gap-2 text-fg'>
+        <p className='flex gap-2 text-hi-2'>
           <span aria-hidden='true' className='text-hi-2'>
             ┃
           </span>
