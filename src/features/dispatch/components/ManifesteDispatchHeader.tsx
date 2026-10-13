@@ -1,3 +1,5 @@
+import { previousMonthLabel } from '~/lib/util/monthLabel'
+
 interface ManifesteDispatchHeaderProps {
   sigle: string | null
   cardCount: number | null
@@ -14,7 +16,8 @@ export const ManifesteDispatchHeader = ({ sigle, cardCount }: ManifesteDispatchH
         <span>Mensuelle</span>
       </h1>
       <p className='font-mono text-[11px] tracking-wide text-fg-dim uppercase'>
-        Société {sigleDisplay} Logistics · {countDisplay} salariés · Mai 2026
+        Société {sigleDisplay} Logistics · {countDisplay} salariés ·{' '}
+        {previousMonthLabel('capitalized')}
       </p>
     </header>
   )

@@ -1,3 +1,5 @@
+import { previousMonthLabel } from '~/lib/util/monthLabel'
+
 interface TerminalDispatchHeaderProps {
   sigle: string | null
   cardCount: number | null
@@ -16,7 +18,8 @@ export const TerminalDispatchHeader = ({ sigle, cardCount }: TerminalDispatchHea
         Distribution mensuelle
       </h1>
       <p className='text-xs text-fg-dim'>
-        Société {sigleDisplay} Logistics · {countDisplay} salariés · MAI 2026
+        Société {sigleDisplay} Logistics · {countDisplay} salariés ·{' '}
+        {previousMonthLabel('uppercase')}
       </p>
     </header>
   )
