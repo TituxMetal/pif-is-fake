@@ -121,7 +121,7 @@ export const Home = ({ intent }: HomeProps) => {
       {theme === 'terminal' && phase === 'idle' && <TerminalBootBlock />}
       {theme === 'manifeste' && (
         <span className='inline-flex items-center self-start bg-hi px-3 py-1 font-mono text-xs font-bold tracking-widest text-ink-on-hi uppercase'>
-          {previousMonthLabel('uppercase')}
+          {previousMonthLabel('capitalized')}
         </span>
       )}
       <header className='flex flex-col gap-4'>
