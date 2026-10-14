@@ -1,6 +1,6 @@
 # Content Banks — First Draft
 
-**Status:** draft for v1. Companion to [`../MVP.md`](../MVP.md) (specification) and
+**Status:** draft (v1). **Companion to:** [`../MVP.md`](../MVP.md) (specification) and
 [`vest-roles.md`](./vest-roles.md) (dispatch model). The initial entries of the motif and
 loading-step banks were drafted during the design-pass brainstorm.
 
@@ -258,5 +258,5 @@ Footer template: `PIF v0.0.1 — Prime [Illusoire|Imaginaire|Insensée|Injuste] 
 ## Versioning
 
 These banks are **static and versioned content** per `MVP.md` ("no runtime AI generation of
-motifs"). They should ship in the bundle as TypeScript modules, not be fetched at runtime. The
-project's `frontend-architecture` skill decides exact file location and naming.
+motifs"). They should ship in the bundle as TypeScript modules, not be fetched at runtime. File
+location and naming follow the feature-folder layout in [`../../AGENTS.md`](../../AGENTS.md) §"Repo Map".

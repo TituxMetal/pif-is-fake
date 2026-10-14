@@ -1,6 +1,6 @@
 # PrimeAuPif (PIF) — Satirical Bonus Generator
 
-**Date:** 2026-05-02 **Status:** Spec — ready for implementation **Type:** Web application
+**Status:** spec — in force. **Date:** 2026-05-02. **Type:** web application.
 
 > Consolidated 2026-05-02 from the design-pass brainstorm. The visual language lives in
 > [`design.md`](./design.md); the deeper specs live in
@@ -470,7 +470,8 @@ for social-share previews and screenshot quality (matches OpenGraph default rati
 
 ## Code Conventions
 
-Defined globally in `~/.claude/CLAUDE.md`. Reminder of the rules that apply directly to this
+Restated under "Verification Boundary" in [`../AGENTS.md`](../AGENTS.md), which is the
+authority. Reminder of the rules that apply directly to this
 project:
 
 - TypeScript strict
@@ -486,8 +487,9 @@ project:
 - All checks pass before any commit: `bun run test`, `bun run typecheck`, `bun run lint:check`,
   `bun run format:check`
 
-Frontend organization follows the project-local `frontend-architecture` skill (feature folders) —
-file naming and hierarchy under that skill's authority.
+Frontend organization follows the feature-folder layout documented in
+[`../AGENTS.md`](../AGENTS.md) §"Repo Map" — file naming and hierarchy are under
+that section's authority.
 
 ---
 

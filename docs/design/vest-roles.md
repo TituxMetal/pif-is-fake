@@ -1,6 +1,6 @@
 # Vest → Role Mapping, Dispatch Model
 
-**Status:** canonical. Companion to [`../MVP.md`](../MVP.md) and [`../design.md`](../design.md).
+**Status:** canonical. **Companion to:** [`../MVP.md`](../MVP.md) and [`../design.md`](../design.md).
 
 In real warehouses, the color of a worker's hi-vis vest signals their employment status. Anyone
 who has worked a quai knows it instantly: yellow vest = temp, orange vest = permanent, bicolor =

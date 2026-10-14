@@ -1,6 +1,6 @@
 # PIF — Design
 
-**Status:** consolidated 2026-05-02 from the design-pass brainstorm. **Companion to:** `MVP.md`.
+**Status:** consolidated (2026-05-02). **Companion to:** [`MVP.md`](./MVP.md) (the spec).
 
 This file captures the visual language of PrimeAuPif. The spec — routes, generation rules, hash
 encoding, edge cases, microcopy — lives in `MVP.md`. The deeper specifics that didn't fit on a

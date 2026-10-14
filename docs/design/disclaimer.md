@@ -1,7 +1,7 @@
 # `/avertissement` — Disclaimer Page
 
-**Status:** locked during the design-pass brainstorm. Single-page integrated disclaimer with a
-3-sentence motivation block.
+**Status:** locked. **Companion to:** [`../MVP.md`](../MVP.md). Single-page integrated
+disclaimer with a 3-sentence motivation block.
 
 ## Route
 

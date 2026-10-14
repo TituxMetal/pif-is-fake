@@ -1,5 +1,6 @@
 # PROGRESS — PrimeAuPif (PIF)
 
+**Status:** historical record — closed 2026-05-04.
 **Window:** 2026-05-02 → 2026-05-04 (extended weekend, May 1st challenge)
 **Decision point:** Monday 2026-05-04 mid-morning — go/no-go on whether to finish
 
@@ -13,7 +14,7 @@
 ## Workflow per slice
 
 1. Cut `feature/*` from `main` (no `develop` on this project)
-2. Short plan in `~/.claude/plans/` (single-tranche scope)
+2. Short plan in [`docs/plans/`](./plans/README.md) (single-tranche scope)
 3. Implement
 4. `/ship` (typecheck + lint:check + format:check + bun test → atomic commits → push → PR)
 5. Copilot review (required on slices #1 #2, optional on #3 #4)

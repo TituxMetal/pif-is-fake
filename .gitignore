@@ -26,8 +26,13 @@ Thumbs.db
 *.swp
 *.swo
 
-# Agent
-.pi/
+# Agent — local artifacts only. `.pi/settings.json` and `.pi/skills/` are
+# committed doctrine and must stay tracked.
+.pi/pi-daddy/
+.pi/npm/
+.pi/git/
+.pi/sessions/
+.pi/mcp.json
 
 # Project
 docs/_archive/
