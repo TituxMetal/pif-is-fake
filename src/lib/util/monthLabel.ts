@@ -15,16 +15,11 @@ const MONTHS_FR = [
   'décembre'
 ] as const
 
-export const previousMonthLabel = (
-  casing: MonthLabelCase,
-  now: Date = new Date()
-): string => {
+export const previousMonthLabel = (casing: MonthLabelCase, now: Date = new Date()): string => {
   const previousMonth = new Date(now.getFullYear(), now.getMonth() - 1, 1)
   const month = MONTHS_FR[previousMonth.getMonth()] ?? ''
   const label =
-    casing === 'uppercase'
-      ? month.toUpperCase()
-      : month.charAt(0).toUpperCase() + month.slice(1)
+    casing === 'uppercase' ? month.toUpperCase() : month.charAt(0).toUpperCase() + month.slice(1)
 
   return `${label} ${previousMonth.getFullYear()}`
 }
